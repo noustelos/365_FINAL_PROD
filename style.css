@@ -99,6 +99,13 @@ body::before {
 .panel-extra-dark { background: var(--glass-extra-dark) !important; border: 1px solid rgba(212,175,55,0.18) !important; box-shadow: 0 35px 110px rgba(0,0,0,0.20); }
 .special-panel-dark { background: rgba(25, 20, 18, 0.22) !important; border: 1px solid rgba(212,175,55,0.22) !important; }
 
+/* ΝΕΟ: Λευκό Glass Πάνελ για Demo & Download */
+.panel-white-glass { 
+    background: rgba(255, 255, 255, 0.26) !important; 
+    border: 1px solid rgba(255, 255, 255, 0.34) !important; 
+    box-shadow: 0 35px 110px rgba(0,0,0,0.10) !important; 
+}
+
 /* Glass Panels refinement */
 .hero-section { background: rgba(255,255,255,0.26); border: 1px solid rgba(255,255,255,0.34); box-shadow: 0 35px 110px rgba(0,0,0,0.14); }
 .cta-panel { background: rgba(255,255,255,0.28); border: 1px solid rgba(212,175,55,0.25); }
@@ -110,6 +117,9 @@ h1, h2, h3 {
     text-shadow: none !important; 
     position: relative; z-index: 2;
 }
+
+/* Burgundy Title Utility */
+.burgundy-title { color: var(--burgundy) !important; }
 
 h2 { font-size: 2.1rem !important; line-height: 1.2; margin-bottom: 25px; }
 h2::after {
@@ -141,8 +151,8 @@ h2::after {
 }
 .badge-style:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
 
-/* Burgundy Text (Royal) */
-.burgundy-text { color: #5A0016 !important; font-weight: 700; }
+/* Burgundy Text (Royal) & Checkmarks */
+.burgundy-text, .checkmark-custom { color: var(--burgundy) !important; font-weight: 700; }
 
 /* Body text */
 .large-text {
@@ -308,43 +318,37 @@ header .main-title {
 .lang-btn.active { opacity: 1; color: var(--gold); }
 .lang-divider { color: rgba(255,255,255,0.55); margin: 0 6px; }
 
-/* Iframe */
-/* Premium Camouflage για το Widget Container */
-/* Premium Glass Frame για το Widget */
+/* Iframe Section */
+/* FIX ΓΙΑ IPHONE CENTERING */
 .widget-preview-container {
-    width: 480px; 
-    height: 380px; 
-    margin: 60px auto 40px auto; 
+    width: 320px; /* Μειωμένο για να χωράει σε iPhone SE/13 mini */
+    height: 520px; 
+    margin: 60px auto !important; /* Force auto margins για κεντράρισμα */
     border-radius: 40px; 
-    
-    /* Χρώμα που ταιριάζει με το πάνελ (Ivory Glass) */
     background: rgba(255, 255, 255, 0.15); 
     backdrop-filter: blur(25px) saturate(120%);
     -webkit-backdrop-filter: blur(25px) saturate(120%);
-    
-    /* Περίγραμμα και Σκιές */
-    border: 1px solid rgba(212, 175, 55, 0.35); /* Χρυσό απαλό stroke */
-    box-shadow: 
-        0 25px 55px rgba(0,0,0,0.1),
-        inset 0 0 15px rgba(255, 255, 255, 0.2); 
-
-    padding: 12px; /* Δημιουργεί ένα κομψό "τζάμι" γύρω από το widget */
+    border: 1px solid rgba(212, 175, 55, 0.35); 
+    box-shadow: 0 25px 55px rgba(0,0,0,0.1), inset 0 0 15px rgba(255, 255, 255, 0.2); 
+    padding: 12px; 
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     z-index: 2;
     overflow: hidden;
+    left: 0; right: 0; /* Διασφάλιση κεντραρίσματος */
 }
 
 .widget-preview-container iframe { 
     width: 100%; 
     height: 100%; 
     border: none; 
-    border-radius: 30px; /* Πιο ομαλή καμπύλη εσωτερικά */
+    border-radius: 30px; 
     display: block;
-    background: #1a1d21; /* Κρατάμε το εσωτερικό σκούρο για να μην "φέγγει" το iframe πριν φορτώσει */
+    background: #1a1d21; 
 }
+
 /* ==============================
    FOOTER FIX (PREMIUM + READABLE)
    ============================== */
@@ -416,6 +420,7 @@ header .main-title {
     .glass-widget { padding: 50px 25px; }
     .features-grid, .audience-grid { grid-template-columns: 1fr; }
     .hero-section { padding: 50px 25px; }
+    .widget-preview-container { width: 300px; } /* Περικοπή για μικρά πλάτη */
 }
 
 @media (max-width: 600px) {
