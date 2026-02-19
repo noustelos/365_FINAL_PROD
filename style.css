@@ -320,35 +320,41 @@ header .main-title {
 
 /* Iframe Section */
 /* FIX ΓΙΑ IPHONE CENTERING */
+/* Οριστικό Fix για το Widget σε όλες τις συσκευές */
+/* Τελικό Fix για Ύψος και Διαφάνεια */
 .widget-preview-container {
-    width: 320px; /* Μειωμένο για να χωράει σε iPhone SE/13 mini */
-    height: 520px; 
-    margin: 60px auto !important; /* Force auto margins για κεντράρισμα */
-    border-radius: 40px; 
-    background: rgba(255, 255, 255, 0.15); 
-    backdrop-filter: blur(25px) saturate(120%);
-    -webkit-backdrop-filter: blur(25px) saturate(120%);
-    border: 1px solid rgba(212, 175, 55, 0.35); 
-    box-shadow: 0 25px 55px rgba(0,0,0,0.1), inset 0 0 15px rgba(255, 255, 255, 0.2); 
-    padding: 12px; 
+    width: 100%;
+    max-width: 450px;
+    /* Αυξάνουμε το ύψος στα 750px για να χωράει το συρτάρι όταν ανοίγει */
+    height: 750px; 
+    margin: 40px auto !important;
     display: flex;
     justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 2;
+    align-items: flex-start; /* Το widget να ξεκινάει από πάνω */
+    border-radius: 40px;
+    background: transparent !important; /* Αφαιρεί το δικό μας φόντο */
+    border: none !important; /* Αφαιρούμε το περίγραμμα αν θέλεις να "επιπλέει" */
     overflow: hidden;
-    left: 0; right: 0; /* Διασφάλιση κεντραρίσματος */
+    position: relative;
 }
 
-.widget-preview-container iframe { 
-    width: 100%; 
-    height: 100%; 
-    border: none; 
-    border-radius: 30px; 
-    display: block;
-    background: #1a1d21; 
+.widget-preview-container iframe {
+    width: 420px;
+    height: 100%; /* Πιάνει όλο το ύψος των 750px */
+    border: none;
+    background: transparent !important; /* Ζητάει από το iframe να είναι διάφανο */
 }
 
+/* Media Query για κινητά */
+@media (max-width: 430px) {
+    .widget-preview-container {
+        max-width: 350px;
+        height: 700px;
+    }
+    .widget-preview-container iframe {
+        width: 330px;
+    }
+}
 /* ==============================
    FOOTER FIX (PREMIUM + READABLE)
    ============================== */
