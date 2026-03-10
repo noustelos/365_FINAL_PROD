@@ -46,8 +46,22 @@ body {
     color: rgba(255,255,255,0.92);
     min-height: 100vh;
     padding: 35px 0;
-}body {
+}
+
+body {
     overflow-x: hidden;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* Ambient Glows */
@@ -368,7 +382,9 @@ h3 {
     font-size: 0.95rem;
     line-height: 1.6;
     opacity: 0.85;
-}.audience-card {
+}
+
+.audience-card {
     min-height: 160px;
 }
 
@@ -631,6 +647,15 @@ h3 {
     border-color: rgba(212,175,55,0.38);
 }
 
+.social-ios a:focus-visible,
+.badge-style:focus-visible,
+.form-group-vertical button:focus-visible,
+.form-group-vertical input[type="email"]:focus-visible,
+.close-lightbox:focus-visible {
+    outline: 2px solid rgba(212,175,55,0.8);
+    outline-offset: 2px;
+}
+
 .social-ios svg {
     fill: rgba(255,255,255,0.85);
     opacity: 0.9;
@@ -867,6 +892,8 @@ body::after {
     top: 25px; 
     right: 30px;
     color: #d4af37; 
+    background: transparent;
+    border: 0;
     font-size: 65px; 
     font-weight: 200;
     cursor: pointer;
