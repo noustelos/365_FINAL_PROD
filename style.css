@@ -668,6 +668,18 @@ h3 {
     line-height: 1.5;
 }
 
+.footer-credit-link {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    color: rgba(255,255,255,0.95);
+    letter-spacing: 0.3px;
+}
+
+.footer-credit-link:hover {
+    text-decoration: underline;
+}
+
 /* ===============================
    MOBILE RESPONSIVE
    =============================== */
