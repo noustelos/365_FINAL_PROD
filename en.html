@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index,follow">
 
-    <title>365orthodoxy | Digital Calendar</title>
-    <meta name="description" content="A quiet reminder of faith on your screen. Saint of the day and spiritual wisdom.">
+    <title>365orthodoxy | Orthodox Digital Calendar</title>
+    <meta name="description" content="365orthodoxy shows the Saint of the day, feast highlights, and spiritual quotes in one widget for mobile, tablet, and desktop, with daily Orthodox inspiration.">
         <link rel="canonical" href="https://365orthodoxy.com/en.html">
         <link rel="alternate" hreflang="en" href="https://365orthodoxy.com/en.html">
         <link rel="alternate" hreflang="el" href="https://365orthodoxy.com/">
@@ -31,7 +31,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=GFS+Didot&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.min.css">
 
         <script type="application/ld+json">
         {
@@ -75,11 +75,11 @@
             <div id="header-date" class="meta-date"><b>...</b></div>
         </div>
 
-        <div class="lang-switcher">
+        <nav class="lang-switcher" aria-label="Language switcher">
             <a href="index.html" class="lang-btn">gr</a>
             <span class="lang-sep">|</span>
             <a href="en.html" class="lang-btn active">en</a>
-        </div>
+        </nav>
     </header>
 
     <main class="widget-stack">
@@ -147,8 +147,11 @@
             <p class="large-text" style="margin-bottom: 25px;">
                 Currently in final development. Be the first to know:
             </p>
-            <form class="subscribe-form centered-form" method="POST" name="subscribe-en" action="success.html">
+            <form class="subscribe-form centered-form" method="POST" name="subscribe-en" action="success.html" data-netlify="true" netlify-honeypot="website-field">
                 <input type="hidden" name="form-name" value="subscribe-en" />
+                <p class="hp-field" aria-hidden="true">
+                    <label>Do not fill this field: <input name="website-field" tabindex="-1" autocomplete="off"></label>
+                </p>
                 <div class="form-group-vertical">
                     <label for="subscribe-email-en" class="sr-only">Email</label>
                     <input id="subscribe-email-en" type="email" name="email" placeholder="your email..." autocomplete="email" required>
@@ -164,13 +167,13 @@
         <div class="footer-top">
             <div class="footer-brand">
                 <div style="margin-bottom: 15px;">
-                    <img src="assets/logo.png" alt="365orthodoxy Logo" loading="lazy" decoding="async" style="width: 100px; height: auto; filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.2));">
+                    <img src="assets/logo.png" alt="365orthodoxy brand logo" loading="lazy" decoding="async" style="width: 100px; height: auto; filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.2));">
                 </div>
                 <div class="footer-logo">365orthodoxy</div>
                 <div class="footer-verse">In the beginning was the Word… <span>(John 1:1)</span></div>
             </div>
             <div class="footer-contact">
-                <a href="mailto:info@365orthodoxy.com" class="footer-email">info@365orthodoxy.com</a>
+                <a href="#" class="footer-email obfuscated-email" data-user="info" data-domain="365orthodoxy.com" aria-label="Contact email">contact email</a>
             </div>
         </div>
 
@@ -183,8 +186,13 @@
                 <a href="https://www.youtube.com/channel/UCnwt8t4og5OAhhTs2V40tEA" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
                 <a href="https://x.com/365orthodoxy" target="_blank" rel="noopener noreferrer" aria-label="X"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932 6.064-6.932zm-1.292 19.494h2.039L6.486 3.24H4.298l13.311 17.407z"/></svg></a>
             </div>
+
+            <div class="legal-links">
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+
             <p class="copyright">
-                copyright 2026 365orthodoxy.com | spiritual inspiration through design
+                copyright <span class="copyright-year">2026</span> 365orthodoxy.com | spiritual inspiration through design
             </p>
         </div>
     </footer>
@@ -194,13 +202,13 @@
         
         <div class="lightbox-scroll-container">
             <div class="lightbox-content">
-                <img src="assets/mockups/m1.webp" alt="App Preview 1" loading="lazy" decoding="async">
-                <img src="assets/mockups/m2.webp" alt="App Preview 2" loading="lazy" decoding="async">
+                <img src="assets/mockups/m1.webp" alt="365orthodoxy widget preview showing daily saints" loading="lazy" decoding="async">
+                <img src="assets/mockups/m2.webp" alt="365orthodoxy widget preview showing a spiritual quote" loading="lazy" decoding="async">
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.min.js"></script>
 
 </body>
 </html>

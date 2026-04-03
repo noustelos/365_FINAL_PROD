@@ -1,0 +1,13 @@
+{
+  "name": "365orthodoxy-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static landing pages for 365orthodoxy",
+  "scripts": {
+    "clean:minify": "rm -f style.min.css script.min.js",
+    "build:clean:minify": "npm run clean:minify && npm run build:minify",
+    "build:minify": "npm run minify:css && npm run minify:js",
+    "minify:css": "npx --yes clean-css-cli -o style.min.css style.css",
+    "minify:js": "npx --yes terser script.js -c -m -o script.min.js"
+  }
+}

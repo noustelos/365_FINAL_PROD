@@ -78,6 +78,60 @@ function initLanguageAndDate() {
     updateHeaderDate(htmlLang);
 }
 
+function initDynamicCopyrightYear() {
+    const year = new Date().getFullYear();
+    document.querySelectorAll('.copyright-year').forEach((node) => {
+        node.textContent = String(year);
+    });
+}
+
+function initObfuscatedEmails() {
+    document.querySelectorAll('.obfuscated-email').forEach((emailLink) => {
+        const user = emailLink.getAttribute('data-user');
+        const domain = emailLink.getAttribute('data-domain');
+        if (!user || !domain) return;
+
+        const email = `${user}@${domain}`;
+        emailLink.setAttribute('href', `mailto:${email}`);
+        emailLink.textContent = email;
+    });
+}
+
+function initCookieConsent() {
+    const consentKey = 'cookieConsent';
+    if (localStorage.getItem(consentKey)) return;
+
+    const isEnglish = document.documentElement.lang === 'en';
+    const message = isEnglish
+        ? 'This site uses essential cookies/local storage for language preferences and basic functionality.'
+        : 'Ο ιστότοπος χρησιμοποιεί απαραίτητα cookies/local storage για προτιμήσεις γλώσσας και βασική λειτουργία.';
+    const acceptLabel = isEnglish ? 'Accept' : 'Αποδοχή';
+    const rejectLabel = isEnglish ? 'Reject' : 'Απόρριψη';
+    const policyLabel = isEnglish ? 'Privacy Policy' : 'Πολιτική Απορρήτου';
+
+    const banner = document.createElement('div');
+    banner.className = 'cookie-banner';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-live', 'polite');
+    banner.innerHTML = `
+        <p>${message} <a href="privacy.html">${policyLabel}</a></p>
+        <div class="cookie-actions">
+            <button type="button" class="cookie-btn cookie-btn-muted" data-consent="rejected">${rejectLabel}</button>
+            <button type="button" class="cookie-btn" data-consent="accepted">${acceptLabel}</button>
+        </div>
+    `;
+
+    document.body.appendChild(banner);
+
+    banner.querySelectorAll('button[data-consent]').forEach((button) => {
+        button.addEventListener('click', () => {
+            const value = button.getAttribute('data-consent') || 'accepted';
+            localStorage.setItem(consentKey, value);
+            banner.remove();
+        });
+    });
+}
+
 function initLightbox() {
     const openBtn = document.getElementById('openLightbox');
     const lightbox = document.getElementById('lightbox');
@@ -113,4 +167,7 @@ function initLightbox() {
 document.addEventListener('DOMContentLoaded', () => {
     initLanguageAndDate();
     initLightbox();
+    initObfuscatedEmails();
+    initDynamicCopyrightYear();
+    initCookieConsent();
 });

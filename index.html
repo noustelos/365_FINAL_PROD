@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index,follow">
 
-    <title>365orthodoxy | Ψηφιακό Εορτολόγιο</title>
-    <meta name="description" content="Μια ήσυχη υπενθύμιση πίστης στην οθόνη σας. Άγιος της ημέρας και πνευματικός λόγος.">
+    <title>365orthodoxy | Ορθόδοξο Ψηφιακό Εορτολόγιο</title>
+    <meta name="description" content="Το 365orthodoxy δείχνει Άγιο ημέρας, εορτές και πνευματικά αποσπάσματα σε widget για κινητό, tablet και desktop, προσφέροντας καθημερινή ορθόδοξη έμπνευση.">
         <link rel="canonical" href="https://365orthodoxy.com/">
         <link rel="alternate" hreflang="el" href="https://365orthodoxy.com/">
         <link rel="alternate" hreflang="en" href="https://365orthodoxy.com/en.html">
@@ -29,7 +29,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=GFS+Didot&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.min.css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
 
         <script type="application/ld+json">
@@ -79,11 +79,11 @@
             <div id="header-date" class="meta-date"><b>...</b></div>
         </div>
 
-        <div class="lang-switcher">
+        <nav class="lang-switcher" aria-label="Εναλλαγή γλώσσας">
             <a href="index.html" class="lang-btn active">gr</a>
             <span class="lang-sep">|</span>
             <a href="en.html" class="lang-btn">en</a>
-        </div>
+        </nav>
 
     </header>
 
@@ -252,8 +252,8 @@
     
     <div class="lightbox-scroll-container">
         <div class="lightbox-content">
-            <img src="assets/mockups/m1.webp" alt="Preview 1" loading="lazy" decoding="async">
-            <img src="assets/mockups/m2.webp" alt="Preview 2" loading="lazy" decoding="async">
+            <img src="assets/mockups/m1.webp" alt="Προεπισκόπηση του widget 365orthodoxy με εορτολόγιο ημέρας" loading="lazy" decoding="async">
+            <img src="assets/mockups/m2.webp" alt="Προεπισκόπηση του widget 365orthodoxy με πνευματικό απόσπασμα" loading="lazy" decoding="async">
         </div>
     </div>
 </div>
@@ -333,8 +333,11 @@
                 <em>Αφήστε το email σας για να ειδοποιηθείτε πρώτοι:</em>
             </p>
 
-            <form class="subscribe-form centered-form" method="POST" name="subscribe" action="success.html">
+            <form class="subscribe-form centered-form" method="POST" name="subscribe" action="success.html" data-netlify="true" netlify-honeypot="website-field">
                 <input type="hidden" name="form-name" value="subscribe" />
+                <p class="hp-field" aria-hidden="true">
+                    <label>Μην συμπληρώσετε αυτό το πεδίο: <input name="website-field" tabindex="-1" autocomplete="off"></label>
+                </p>
 
                 <div class="form-group-vertical">
                     <label for="subscribe-email" class="sr-only">Email</label>
@@ -356,7 +359,7 @@
         <div class="footer-brand">
             <div style="margin-bottom: 15px;">
                 <a href="https://noustelos.gr" target="_blank" rel="noopener noreferrer" aria-label="Noustelos Studio">
-                    <img src="assets/logo.png" alt="365orthodoxy Logo" loading="lazy" decoding="async" style="width: 100px; height: auto; filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.2));">
+                    <img src="assets/logo.png" alt="Λογότυπο 365orthodoxy" loading="lazy" decoding="async" style="width: 100px; height: auto; filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.2));">
                 </a>
             </div>
             
@@ -365,7 +368,7 @@
         </div>
 
         <div class="footer-contact">
-            <a href="mailto:info@365orthodoxy.com" class="footer-email">info@365orthodoxy.com</a>
+            <a href="#" class="footer-email obfuscated-email" data-user="info" data-domain="365orthodoxy.com" aria-label="Email επικοινωνίας">email επικοινωνίας</a>
         </div>
 
     </div>
@@ -392,15 +395,19 @@
             </a>
         </div>
 
+        <div class="legal-links">
+            <a href="privacy.html">Πολιτική Απορρήτου</a>
+        </div>
+
         <p class="copyright">
-            copyright 2026 365orthodoxy.com |
+            copyright <span class="copyright-year">2026</span> 365orthodoxy.com |
             <a href="https://noustelos.gr" class="footer-credit-link" target="_blank" rel="noopener noreferrer">NOUSTELOS_STUDIO /&gt;</a>
         </p>
 
     </div>
 
 </footer>
-    <script src="script.js"></script>
+    <script src="script.min.js"></script>
 
 </body>
 </html>
