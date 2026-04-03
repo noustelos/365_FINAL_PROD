@@ -108,13 +108,14 @@ function initCookieConsent() {
     const acceptLabel = isEnglish ? 'Accept' : 'Αποδοχή';
     const rejectLabel = isEnglish ? 'Reject' : 'Απόρριψη';
     const policyLabel = isEnglish ? 'Privacy Policy' : 'Πολιτική Απορρήτου';
+    const policyPath = isEnglish ? 'privacy-en.html' : 'privacy.html';
 
     const banner = document.createElement('div');
     banner.className = 'cookie-banner';
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-live', 'polite');
     banner.innerHTML = `
-        <p>${message} <a href="privacy.html">${policyLabel}</a></p>
+        <p>${message} <a href="${policyPath}">${policyLabel}</a></p>
         <div class="cookie-actions">
             <button type="button" class="cookie-btn cookie-btn-muted" data-consent="rejected">${rejectLabel}</button>
             <button type="button" class="cookie-btn" data-consent="accepted">${acceptLabel}</button>

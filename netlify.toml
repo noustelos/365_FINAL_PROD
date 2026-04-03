@@ -18,6 +18,31 @@
   to = "/en.html"
   status = 301
 
+[[redirects]]
+  from = "/en/"
+  to = "/en.html"
+  status = 301
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 301
+
+[[redirects]]
+  from = "/privacy/"
+  to = "/privacy.html"
+  status = 301
+
+[[redirects]]
+  from = "/privacy-en"
+  to = "/privacy-en.html"
+  status = 301
+
+[[redirects]]
+  from = "/privacy-en/"
+  to = "/privacy-en.html"
+  status = 301
+
 # Security headers for all routes
 [[headers]]
   for = "/*"
