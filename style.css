@@ -395,6 +395,12 @@ h3 {
     border: 1px solid rgba(212,175,55,0.24);
 }
 
+.feature-card.reading-focus-panel:hover,
+.audience-card.reading-focus-panel:hover {
+    background: rgba(31, 39, 49, 0.62);
+    border-color: rgba(212,175,55,0.32);
+}
+
 .audience-card {
     min-height: 160px;
 }
