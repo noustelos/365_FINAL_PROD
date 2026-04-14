@@ -1108,8 +1108,8 @@ body::after {
 }
 
 @keyframes goldShimmer {
-    0%   { background-position: -200% center; }
-    100% { background-position: 200% center; }
+    0%   { background-position: -250% center; }
+    100% { background-position: 250% center; }
 }
 
 .gold-badge::after {
@@ -1118,13 +1118,13 @@ body::after {
     inset: 0;
     border-radius: inherit;
     background: linear-gradient(
-        105deg,
-        transparent 40%,
-        rgba(255,255,255,0.14) 50%,
-        transparent 60%
+        90deg,
+        transparent 30%,
+        rgba(255,255,255,0.16) 50%,
+        transparent 70%
     );
-    background-size: 200% 100%;
-    animation: goldShimmer 3.5s linear infinite;
+    background-size: 250% 100%;
+    animation: goldShimmer 6s ease-in-out infinite;
     pointer-events: none;
 }
 
