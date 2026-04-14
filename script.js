@@ -168,10 +168,42 @@ function initLightbox() {
     });
 }
 
+function initScrollReveal() {
+    const widgets = document.querySelectorAll('main .glass-widget');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+
+    widgets.forEach(el => {
+        el.classList.add('reveal-widget');
+        observer.observe(el);
+    });
+}
+
+function initGlowParallax() {
+    const glow1 = document.querySelector('.glow-1');
+    const glow2 = document.querySelector('.glow-2');
+    if (!glow1 || !glow2) return;
+
+    document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 28;
+        const y = (e.clientY / window.innerHeight - 0.5) * 20;
+        glow1.style.transform = `translate(${x}px, ${y}px)`;
+        glow2.style.transform = `translate(${-x}px, ${-y}px)`;
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initLanguageAndDate();
     initLightbox();
     initObfuscatedEmails();
     initDynamicCopyrightYear();
     initCookieConsent();
+    initScrollReveal();
+    initGlowParallax();
 });

@@ -11,7 +11,7 @@
 
     --shadow: 0 18px 35px rgba(0,0,0,0.28);
 
-    --burgundy: #b03535;
+    --burgundy: #d4795a;
 }
 
 /* Global Reset */
@@ -102,7 +102,7 @@ body {
     padding: 0 18px;
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 34px;
 }
 
 /* Glass Base */
@@ -587,8 +587,8 @@ h3 {
    =============================== */
 
 .footer-main {
-    margin-top: 25px;
-    padding: 26px 28px;
+    margin-top: 40px;
+    padding: 40px 28px 26px 28px;
 }
 
 .footer-top {
@@ -877,7 +877,7 @@ body::after {
     inset: 0;
     pointer-events: none;
     z-index: -1;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.015'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
 }
 .glass-widget {
     position: relative;
@@ -1046,4 +1046,93 @@ body::after {
     .lightbox-nav-bar { gap: 20px; padding: 10px 25px; }
     .close-lightbox { top: 15px; right: 15px; font-size: 55px; }
     .nav-arrow { font-size: 16px; }
+}
+
+/* ===============================
+   AESTHETIC IMPROVEMENTS v2
+   =============================== */
+
+/* Scroll-reveal */
+.reveal-widget {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal-widget.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-widget {
+        transition: none;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    .gold-badge::after {
+        animation: none;
+    }
+}
+
+/* Hero h2 larger */
+.hero-section > h2 {
+    font-size: 2.2rem;
+    line-height: 1.25;
+}
+
+@media (max-width: 600px) {
+    .hero-section > h2 {
+        font-size: 1.7rem;
+    }
+}
+
+/* Feature card icons */
+.feature-card h3::before {
+    display: block;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: rgba(212,175,55,0.88);
+    font-weight: 400;
+}
+.features-grid .feature-card:nth-child(1) h3::before { content: "✝"; }
+.features-grid .feature-card:nth-child(2) h3::before { content: "✦"; }
+.features-grid .feature-card:nth-child(3) h3::before { content: "⇌"; }
+.features-grid .feature-card:nth-child(4) h3::before { content: "◈"; }
+.features-grid .feature-card:nth-child(5) h3::before { content: "◻"; }
+.features-grid .feature-card:nth-child(6) h3::before { content: "☩"; }
+
+/* Gold badge shimmer */
+.gold-badge {
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes goldShimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+.gold-badge::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        105deg,
+        transparent 40%,
+        rgba(255,255,255,0.14) 50%,
+        transparent 60%
+    );
+    background-size: 200% 100%;
+    animation: goldShimmer 3.5s linear infinite;
+    pointer-events: none;
+}
+
+/* Phone mockup frame */
+.widget-preview-container {
+    box-shadow:
+        0 0 0 9px rgba(35,43,53,0.88),
+        0 0 0 11px rgba(191,167,106,0.22),
+        0 32px 60px rgba(0,0,0,0.48);
+    border-radius: 30px;
 }
