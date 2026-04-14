@@ -30,6 +30,7 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=GFS+Didot&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.min.css">
 
@@ -67,7 +68,7 @@
 
     <header class="glass-widget special-panel-dark header-main">
         <div class="header-center-stack">
-            <a href="#" class="nav-logo main-title">365orthodoxy</a>
+            <a href="/en.html" class="nav-logo main-title">365orthodoxy</a>
             <div class="brand-divider"></div>
             <div class="header-verse">
                 In the beginning was the Word… <span>(John 1:1)</span>
@@ -167,7 +168,7 @@
         <div class="footer-top">
             <div class="footer-brand">
                 <div style="margin-bottom: 15px;">
-                    <img src="assets/logo.png" alt="365orthodoxy brand logo" loading="lazy" decoding="async" style="width: 100px; height: auto; filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.2));">
+                    <img src="assets/logo.png" alt="365orthodoxy brand logo" width="100" height="100" loading="lazy" decoding="async" style="width: 100px; height: auto; filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.2));">
                 </div>
                 <div class="footer-logo">365orthodoxy</div>
                 <div class="footer-verse">In the beginning was the Word… <span>(John 1:1)</span></div>
@@ -197,18 +198,18 @@
         </div>
     </footer>
 
-    <div id="lightbox" class="lightbox" style="display:none;" aria-hidden="true" role="dialog" aria-label="Gallery preview">
+    <div id="lightbox" class="lightbox" style="display:none;" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Gallery preview">
         <button type="button" class="close-lightbox" aria-label="Close preview">&times;</button>
         
         <div class="lightbox-scroll-container">
             <div class="lightbox-content">
-                <img src="assets/mockups/m1.webp" alt="365orthodoxy widget preview showing daily saints" loading="lazy" decoding="async">
-                <img src="assets/mockups/m2.webp" alt="365orthodoxy widget preview showing a spiritual quote" loading="lazy" decoding="async">
+                <img src="assets/mockups/m1.webp" alt="365orthodoxy widget preview showing daily saints" loading="eager" decoding="async">
+                <img src="assets/mockups/m2.webp" alt="365orthodoxy widget preview showing a spiritual quote" loading="eager" decoding="async">
             </div>
         </div>
     </div>
 
-    <script src="script.min.js"></script>
+    <script src="script.min.js" defer></script>
 
 </body>
 </html>

@@ -54,6 +54,7 @@ function openLightbox() {
     lightbox.style.display = 'flex';
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    document.querySelector('.close-lightbox')?.focus();
 }
 
 function closeLightbox() {
@@ -63,6 +64,7 @@ function closeLightbox() {
     lightbox.style.display = 'none';
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = 'auto';
+    document.getElementById('openLightbox')?.focus();
 }
 
 function initLanguageAndDate() {
@@ -70,7 +72,8 @@ function initLanguageAndDate() {
     const htmlLang = document.documentElement.lang === 'en' ? 'en' : 'el';
 
     if (hasI18nNodes) {
-        const savedLang = localStorage.getItem('preferredLang') || htmlLang;
+        const raw = localStorage.getItem('preferredLang');
+        const savedLang = ['el', 'en'].includes(raw) ? raw : htmlLang;
         setLanguage(savedLang);
         return;
     }

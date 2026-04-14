@@ -28,6 +28,7 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=GFS+Didot&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.min.css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -68,7 +69,7 @@
     <header class="glass-widget special-panel-dark header-main">
 
         <div class="header-center-stack">
-            <a href="#" class="nav-logo main-title">365orthodoxy</a>
+            <a href="/" class="nav-logo main-title">365orthodoxy</a>
 
             <div class="brand-divider"></div>
 
@@ -239,7 +240,7 @@
             </div>
 
                 <div class="widget-preview-container">
-            <iframe src="https://illustrious-piroshki-cd95ac.netlify.app/" title="365orthodoxy widget live preview" loading="lazy" allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <iframe src="https://illustrious-piroshki-cd95ac.netlify.app/" title="365orthodoxy widget live preview" loading="lazy" allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
     
     <div style="text-align: center; margin-top: 20px;">
         <button id="openLightbox" class="badge-style gold-badge">
@@ -247,13 +248,13 @@
         </button>
     </div>
 </div>
-<div id="lightbox" class="lightbox" style="display:none;" aria-hidden="true" role="dialog" aria-label="Gallery preview">
+<div id="lightbox" class="lightbox" style="display:none;" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Gallery preview">
     <button type="button" class="close-lightbox" aria-label="Κλείσιμο προεπισκόπησης">&times;</button>
     
     <div class="lightbox-scroll-container">
         <div class="lightbox-content">
-            <img src="assets/mockups/m1.webp" alt="Προεπισκόπηση του widget 365orthodoxy με εορτολόγιο ημέρας" loading="lazy" decoding="async">
-            <img src="assets/mockups/m2.webp" alt="Προεπισκόπηση του widget 365orthodoxy με πνευματικό απόσπασμα" loading="lazy" decoding="async">
+            <img src="assets/mockups/m1.webp" alt="Προεπισκόπηση του widget 365orthodoxy με εορτολόγιο ημέρας" loading="eager" decoding="async">
+            <img src="assets/mockups/m2.webp" alt="Προεπισκόπηση του widget 365orthodoxy με πνευματικό απόσπασμα" loading="eager" decoding="async">
         </div>
     </div>
 </div>
@@ -308,8 +309,8 @@
             </p>
 
             <div class="button-center">
-                <a href="#cta" class="badge-style">Download Free</a>
-                <a href="#cta" class="badge-style gold-badge">Get Premium</a>
+                <a href="#cta" class="badge-style">Δωρεάν λήψη</a>
+                <a href="#cta" class="badge-style gold-badge">Premium έκδοση</a>
             </div>
         </section>
 
@@ -359,7 +360,7 @@
         <div class="footer-brand">
             <div style="margin-bottom: 15px;">
                 <a href="https://noustelos.gr" target="_blank" rel="noopener noreferrer" aria-label="Noustelos Studio">
-                    <img src="assets/logo.png" alt="Λογότυπο 365orthodoxy" loading="lazy" decoding="async" style="width: 100px; height: auto; filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.2));">
+                    <img src="assets/logo.png" alt="Λογότυπο 365orthodoxy" width="100" height="100" loading="lazy" decoding="async" style="width: 100px; height: auto; filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.2));">
                 </a>
             </div>
             
@@ -407,7 +408,7 @@
     </div>
 
 </footer>
-    <script src="script.min.js"></script>
+    <script src="script.min.js" defer></script>
 
 </body>
 </html>
