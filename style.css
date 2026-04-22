@@ -316,6 +316,9 @@ h3 {
     opacity: 0.65;
     color: rgba(255,255,255,0.85);
     padding: 8px 6px;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
     transition: 0.25s ease;
     -webkit-tap-highlight-color: transparent;
 }
@@ -466,6 +469,9 @@ h3 {
     background: rgba(255,255,255,0.06);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
     transition: 0.25s ease;
 }
 
@@ -557,6 +563,9 @@ h3 {
     transition: 0.3s ease;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .form-group-vertical button:hover {
@@ -673,6 +682,9 @@ h3 {
     justify-content: center;
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(199,154,68,0.18);
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
     transition: 0.25s ease;
 }
 
@@ -777,6 +789,9 @@ h3 {
     cursor: pointer;
     font-size: 0.82rem;
     font-weight: 700;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .cookie-btn.cookie-btn-muted {
@@ -975,7 +990,9 @@ body::after {
     font-weight: 700;
     cursor: pointer;
     padding: 10px;
+    -webkit-user-select: none;
     user-select: none;
+    -webkit-touch-callout: none;
     transition: 0.3s;
     -webkit-tap-highlight-color: transparent;
 }
@@ -997,6 +1014,9 @@ body::after {
     cursor: pointer;
     padding: 15px;
     z-index: 10011;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
     -webkit-tap-highlight-color: transparent;
 }
 
