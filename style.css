@@ -1038,21 +1038,9 @@ body::after {
     letter-spacing: 0.5px;
 }
 
-/* Hero ornamental divider — replaces ✦ with a richer glyph */
+/* Hero divider: clean gold line, no glyphs */
 .hero-section .section-divider .divider-symbol {
-    font-size: 1.25rem;
-    color: rgba(199,154,68,0.92);
-    letter-spacing: 6px;
-}
-.hero-section .section-divider .divider-symbol::before {
-    content: "❦ ";
-    margin-right: 4px;
-    opacity: 0.9;
-}
-.hero-section .section-divider .divider-symbol::after {
-    content: " ❦";
-    margin-left: 4px;
-    opacity: 0.9;
+    display: none;
 }
 
 
