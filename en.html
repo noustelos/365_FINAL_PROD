@@ -77,9 +77,9 @@
         </div>
 
         <nav class="lang-switcher" aria-label="Language switcher">
-            <a href="index.html" class="lang-btn">gr</a>
+            <a id="btn-el" href="index.html" class="lang-btn">gr</a>
             <span class="lang-sep">|</span>
-            <a href="en.html" class="lang-btn active">en</a>
+            <a id="btn-en" href="en.html" class="lang-btn active">en</a>
         </nav>
     </header>
 
@@ -113,15 +113,15 @@
         </section>
 
         <section class="glass-widget panel-extra-dark" id="demo">
-            <h2>The Widget in Action</h2>
+            <h2 data-i18n="live-title">The Widget in Action</h2>
             <div class="section-divider"><span class="divider-symbol">✦</span></div>
 
             <div class="widget-preview-container">
-                <iframe src="https://illustrious-piroshki-cd95ac.netlify.app/" title="365orthodoxy widget live preview" loading="lazy" allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                <iframe src="https://illustrious-piroshki-cd95ac.netlify.app/" title="365orthodoxy widget live preview" loading="lazy" allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
                 
                 <div style="text-align: center; margin-top: 25px;">
                     <button id="openLightbox" class="badge-style gold-badge">
-                        See App in Action
+                        <span data-i18n="btn-demo">See App in Action</span>
                     </button>
                 </div>
             </div>
@@ -143,7 +143,7 @@
         </section>
 
         <section class="glass-widget special-panel cta-panel" id="cta">
-            <h2>How to get 365orthodoxy</h2>
+            <h2 data-i18n="news-title">How to get 365orthodoxy</h2>
             <div class="section-divider"><span class="divider-symbol">✦</span></div>
             <p class="large-text" style="margin-bottom: 25px;">
                 Currently in final development. Be the first to know:
@@ -156,7 +156,7 @@
                 <div class="form-group-vertical">
                     <label for="subscribe-email-en" class="sr-only">Email</label>
                     <input id="subscribe-email-en" type="email" name="email" placeholder="your email..." autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" required>
-                    <button type="submit">Notify Me</button>
+                    <button type="submit" data-i18n="news-btn">Notify Me</button>
                 </div>
             </form>
             <p class="mini-privacy">zero spam. only spiritual inspiration.</p>

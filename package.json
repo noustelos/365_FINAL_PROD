@@ -4,10 +4,24 @@
   "private": true,
   "description": "Static landing pages for 365orthodoxy",
   "scripts": {
-    "clean:minify": "rm -f style.min.css script.min.js",
+    "clean:minify": "rm -f style.min.css script.min.js script.transpiled.js",
     "build:clean:minify": "npm run clean:minify && npm run build:minify",
     "build:minify": "npm run minify:css && npm run minify:js",
-    "minify:css": "npx --yes clean-css-cli -o style.min.css style.css",
-    "minify:js": "npx --yes terser script.js -c -m -o script.min.js"
+    "transpile:js": "babel script.js --out-file script.transpiled.js",
+    "minify:css": "cleancss -o style.min.css style.css",
+    "minify:js": "npm run transpile:js && terser script.transpiled.js -c -m -o script.min.js && rm -f script.transpiled.js",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:install": "playwright install chromium firefox",
+    "test:e2e:install:webkit": "playwright install webkit"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.28.3",
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.28.3",
+    "@playwright/test": "^1.55.0",
+    "clean-css-cli": "^5.6.3",
+    "serve": "^14.2.4",
+    "terser": "^5.43.1"
   }
 }

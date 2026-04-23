@@ -3,14 +3,60 @@
    Functions: Header Date, Optional Translations, Lightbox
    ============================================================ */
 
-async function fetchTranslations(lang) {
+const TRANSLATION_FETCH_TIMEOUT_MS = 6000;
+const translationCache = new Map();
+
+function safeStorageGet(key) {
     try {
-        const response = await fetch(`translations/${lang}.json`);
-        if (!response.ok) throw new Error('File not found.');
-        return await response.json();
+        return localStorage.getItem(key);
     } catch (error) {
+        console.warn('Storage read failed:', error);
+        return null;
+    }
+}
+
+function safeStorageSet(key, value) {
+    try {
+        localStorage.setItem(key, value);
+        return true;
+    } catch (error) {
+        console.warn('Storage write failed:', error);
+        return false;
+    }
+}
+
+async function fetchTranslations(lang) {
+    if (translationCache.has(lang)) {
+        return translationCache.get(lang);
+    }
+
+    let timeoutId = null;
+    const hasAbortController = typeof AbortController !== 'undefined';
+    const controller = hasAbortController ? new AbortController() : null;
+
+    try {
+        if (controller) {
+            timeoutId = window.setTimeout(() => controller.abort(), TRANSLATION_FETCH_TIMEOUT_MS);
+        }
+
+        const response = await fetch(`translations/${lang}.json`, controller ? { signal: controller.signal } : undefined);
+        if (!response.ok) throw new Error('File not found.');
+
+        const parsed = await response.json();
+        translationCache.set(lang, parsed);
+        return parsed;
+    } catch (error) {
+        if (error && error.name === 'AbortError') {
+            console.error('Translations failed: request timed out.');
+            return null;
+        }
+
         console.error('Translations failed:', error);
         return null;
+    } finally {
+        if (timeoutId) {
+            window.clearTimeout(timeoutId);
+        }
     }
 }
 
@@ -39,10 +85,13 @@ async function setLanguage(lang) {
     const translations = await fetchTranslations(lang);
     applyTranslations(translations);
 
-    document.getElementById('btn-el')?.classList.toggle('active', lang === 'el');
-    document.getElementById('btn-en')?.classList.toggle('active', lang === 'en');
+    const greekBtn = document.getElementById('btn-el') || document.querySelector('.lang-switcher a[href="index.html"]');
+    const englishBtn = document.getElementById('btn-en') || document.querySelector('.lang-switcher a[href="en.html"]');
 
-    localStorage.setItem('preferredLang', lang);
+    if (greekBtn) greekBtn.classList.toggle('active', lang === 'el');
+    if (englishBtn) englishBtn.classList.toggle('active', lang === 'en');
+
+    safeStorageSet('preferredLang', lang);
     document.documentElement.lang = lang;
     updateHeaderDate(lang);
 }
@@ -70,11 +119,21 @@ function closeLightbox() {
 function initLanguageAndDate() {
     const hasI18nNodes = document.querySelector('[data-i18n]');
     const htmlLang = document.documentElement.lang === 'en' ? 'en' : 'el';
+    const hasDedicatedLanguagePages = Boolean(
+        document.querySelector('.lang-switcher a[href="index.html"]')
+        && document.querySelector('.lang-switcher a[href="en.html"]')
+    );
 
     if (hasI18nNodes) {
-        const raw = localStorage.getItem('preferredLang');
-        const savedLang = ['el', 'en'].includes(raw) ? raw : htmlLang;
-        setLanguage(savedLang);
+        const raw = safeStorageGet('preferredLang');
+        const savedLang = hasDedicatedLanguagePages
+            ? htmlLang
+            : (['el', 'en'].includes(raw) ? raw : htmlLang);
+
+        setLanguage(savedLang).catch((error) => {
+            console.error('Language initialization failed:', error);
+            updateHeaderDate(htmlLang);
+        });
         return;
     }
 
@@ -102,7 +161,7 @@ function initObfuscatedEmails() {
 
 function initCookieConsent() {
     const consentKey = 'cookieConsent';
-    if (localStorage.getItem(consentKey)) return;
+    if (safeStorageGet(consentKey)) return;
 
     const isEnglish = document.documentElement.lang === 'en';
     const message = isEnglish
@@ -130,9 +189,25 @@ function initCookieConsent() {
     banner.querySelectorAll('button[data-consent]').forEach((button) => {
         button.addEventListener('click', () => {
             const value = button.getAttribute('data-consent') || 'accepted';
-            localStorage.setItem(consentKey, value);
+            safeStorageSet(consentKey, value);
             banner.remove();
         });
+    });
+}
+
+function initSubscribeFormGuard() {
+    const isEnglish = document.documentElement.lang === 'en';
+    const loadingLabel = isEnglish ? 'Sending...' : 'Αποστολή...';
+
+    document.querySelectorAll('form.subscribe-form').forEach((form) => {
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (!submitBtn) return;
+
+        form.addEventListener('submit', () => {
+            submitBtn.disabled = true;
+            submitBtn.setAttribute('aria-busy', 'true');
+            submitBtn.textContent = loadingLabel;
+        }, { once: true });
     });
 }
 
@@ -170,6 +245,15 @@ function initLightbox() {
 
 function initScrollReveal() {
     const widgets = document.querySelectorAll('main .glass-widget');
+    if (widgets.length === 0) return;
+
+    if (!('IntersectionObserver' in window)) {
+        widgets.forEach((el) => {
+            el.classList.add('is-visible');
+        });
+        return;
+    }
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -183,6 +267,10 @@ function initScrollReveal() {
         el.classList.add('reveal-widget');
         observer.observe(el);
     });
+
+    window.addEventListener('pagehide', () => {
+        observer.disconnect();
+    }, { once: true });
 }
 
 function initGlowParallax() {
@@ -190,16 +278,43 @@ function initGlowParallax() {
     const glow2 = document.querySelector('.glow-2');
     if (!glow1 || !glow2) return;
 
-    document.addEventListener('mousemove', (e) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 28;
-        const y = (e.clientY / window.innerHeight - 0.5) * 20;
+    if (window.matchMedia('(pointer: coarse)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
+
+    let frameId = null;
+    let nextX = 0;
+    let nextY = 0;
+
+    const render = () => {
+        const x = (nextX / window.innerWidth - 0.5) * 28;
+        const y = (nextY / window.innerHeight - 0.5) * 20;
         glow1.style.transform = `translate(${x}px, ${y}px)`;
         glow2.style.transform = `translate(${-x}px, ${-y}px)`;
-    });
+        frameId = null;
+    };
+
+    const onMouseMove = (event) => {
+        nextX = event.clientX;
+        nextY = event.clientY;
+
+        if (frameId !== null) return;
+        frameId = window.requestAnimationFrame(render);
+    };
+
+    document.addEventListener('mousemove', onMouseMove, { passive: true });
+
+    window.addEventListener('pagehide', () => {
+        document.removeEventListener('mousemove', onMouseMove);
+        if (frameId !== null) {
+            window.cancelAnimationFrame(frameId);
+        }
+    }, { once: true });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     initLanguageAndDate();
+    initSubscribeFormGuard();
     initLightbox();
     initObfuscatedEmails();
     initDynamicCopyrightYear();
