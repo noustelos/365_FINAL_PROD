@@ -198,16 +198,66 @@ function initCookieConsent() {
 function initSubscribeFormGuard() {
     const isEnglish = document.documentElement.lang === 'en';
     const loadingLabel = isEnglish ? 'Sending...' : 'Αποστολή...';
+    const errorLabel = isEnglish
+        ? 'Security check failed. Please try again.'
+        : 'Ο έλεγχος ασφαλείας απέτυχε. Δοκιμάστε ξανά.';
+    const recaptchaSiteKey = window.RECAPTCHA_SITE_KEY;
 
     document.querySelectorAll('form.subscribe-form').forEach((form) => {
         const submitBtn = form.querySelector('button[type="submit"]');
         if (!submitBtn) return;
 
-        form.addEventListener('submit', () => {
+        if (!form.querySelector('input[name="recaptcha_token"]')) {
+            const tokenField = document.createElement('input');
+            tokenField.type = 'hidden';
+            tokenField.name = 'recaptcha_token';
+            form.appendChild(tokenField);
+        }
+
+        form.addEventListener('submit', async (event) => {
+            if (form.dataset.recaptchaPassed === 'true') return;
+            event.preventDefault();
+
             submitBtn.disabled = true;
             submitBtn.setAttribute('aria-busy', 'true');
             submitBtn.textContent = loadingLabel;
-        }, { once: true });
+
+            try {
+                if (!recaptchaSiteKey || typeof grecaptcha === 'undefined') {
+                    throw new Error('reCAPTCHA is not available');
+                }
+
+                await new Promise((resolve) => grecaptcha.ready(resolve));
+
+                const token = await grecaptcha.execute(recaptchaSiteKey, { action: 'subscribe' });
+                const tokenField = form.querySelector('input[name="recaptcha_token"]');
+                if (tokenField) tokenField.value = token;
+
+                const verification = await fetch('/.netlify/functions/verify-recaptcha', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ token, action: 'subscribe' })
+                });
+
+                const verificationResult = await verification.json();
+                if (!verification.ok || !verificationResult.success) {
+                    throw new Error('reCAPTCHA verification failed');
+                }
+
+                form.dataset.recaptchaPassed = 'true';
+                form.submit();
+            } catch (error) {
+                console.error('Form submit blocked:', error);
+                submitBtn.disabled = false;
+                submitBtn.removeAttribute('aria-busy');
+                submitBtn.textContent = submitBtn.getAttribute('data-i18n')
+                    ? (isEnglish ? 'Notify Me' : 'Εγγραφή')
+                    : submitBtn.textContent;
+                window.alert(errorLabel);
+            }
+        });
     });
 }
 

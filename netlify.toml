@@ -1,6 +1,9 @@
 [build]
   publish = "."
 
+[functions]
+  directory = "netlify/functions"
+
 # Canonical URL handling and clean routing
 [[redirects]]
   from = "https://www.365orthodoxy.com/*"
