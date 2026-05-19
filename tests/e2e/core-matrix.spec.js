@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-const criticalPages = ['/', '/en.html', '/privacy.html', '/privacy-en.html', '/success.html'];
+const criticalPages = ['/', '/en', '/privacy', '/privacy-en', '/success.html'];
 
 for (const pagePath of criticalPages) {
   test(`loads without runtime breakage: ${pagePath}`, async ({ page }) => {
@@ -14,7 +14,7 @@ for (const pagePath of criticalPages) {
 }
 
 test('landing pages do not create horizontal overflow', async ({ page }) => {
-  for (const pagePath of ['/', '/en.html']) {
+  for (const pagePath of ['/', '/en']) {
     await page.goto(pagePath, { waitUntil: 'networkidle' });
 
     const hasOverflow = await page.evaluate(() => {

@@ -85,8 +85,12 @@ async function setLanguage(lang) {
     const translations = await fetchTranslations(lang);
     applyTranslations(translations);
 
-    const greekBtn = document.getElementById('btn-el') || document.querySelector('.lang-switcher a[href="index.html"]');
-    const englishBtn = document.getElementById('btn-en') || document.querySelector('.lang-switcher a[href="en.html"]');
+    const greekBtn = document.getElementById('btn-el')
+        || document.querySelector('.lang-switcher a[href="/"]')
+        || document.querySelector('.lang-switcher a[href="index.html"]');
+    const englishBtn = document.getElementById('btn-en')
+        || document.querySelector('.lang-switcher a[href="/en"]')
+        || document.querySelector('.lang-switcher a[href="en.html"]');
 
     if (greekBtn) greekBtn.classList.toggle('active', lang === 'el');
     if (englishBtn) englishBtn.classList.toggle('active', lang === 'en');
@@ -120,8 +124,10 @@ function initLanguageAndDate() {
     const hasI18nNodes = document.querySelector('[data-i18n]');
     const htmlLang = document.documentElement.lang === 'en' ? 'en' : 'el';
     const hasDedicatedLanguagePages = Boolean(
-        document.querySelector('.lang-switcher a[href="index.html"]')
-        && document.querySelector('.lang-switcher a[href="en.html"]')
+        (document.querySelector('.lang-switcher a[href="/"]')
+            || document.querySelector('.lang-switcher a[href="index.html"]'))
+        && (document.querySelector('.lang-switcher a[href="/en"]')
+            || document.querySelector('.lang-switcher a[href="en.html"]'))
     );
 
     if (hasI18nNodes) {

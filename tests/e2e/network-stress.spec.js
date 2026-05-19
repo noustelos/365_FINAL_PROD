@@ -25,7 +25,7 @@ test('malformed translation payload fails gracefully', async ({ page }) => {
     });
   });
 
-  await page.goto('/en.html', { waitUntil: 'domcontentloaded' });
+  await page.goto('/en', { waitUntil: 'domcontentloaded' });
 
   await expect(page.locator('#header-date')).not.toContainText('...');
   await expect(page.locator('main')).toBeVisible();
@@ -41,7 +41,7 @@ test('slow form endpoint still shows immediate submit guard', async ({ page }) =
     });
   });
 
-  await page.goto('/en.html', { waitUntil: 'domcontentloaded' });
+  await page.goto('/en', { waitUntil: 'domcontentloaded' });
 
   const email = page.locator('#subscribe-email-en, #subscribe-email').first();
   const submit = page.locator('form.subscribe-form button[type="submit"]');
