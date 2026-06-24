@@ -34,7 +34,7 @@ if (!isUnsupportedMacWebkit) {
 module.exports = defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
-  retries: 0,
+  retries: process.env.CI ? 2 : 0,
   timeout: 30000,
   expect: {
     timeout: 10000

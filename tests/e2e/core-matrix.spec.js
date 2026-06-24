@@ -1,5 +1,13 @@
 const { test, expect } = require('@playwright/test');
 
+// Keep the suite independent of the heavy third-party Flutter widget iframe:
+// stub it with an empty document so loads stay fast and deterministic.
+test.beforeEach(async ({ page }) => {
+  await page.route(/bible-quotes-widget\.pages\.dev/, (route) =>
+    route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>widget stub</title>' })
+  );
+});
+
 const criticalPages = ['/', '/en', '/privacy', '/privacy-en', '/success.html'];
 
 for (const pagePath of criticalPages) {

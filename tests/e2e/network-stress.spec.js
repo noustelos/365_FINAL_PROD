@@ -1,5 +1,13 @@
 const { test, expect } = require('@playwright/test');
 
+// Stub the heavy third-party Flutter widget iframe so network-timing tests
+// are not at the mercy of an external app's load behavior.
+test.beforeEach(async ({ page }) => {
+  await page.route(/bible-quotes-widget\.pages\.dev/, (route) =>
+    route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>widget stub</title>' })
+  );
+});
+
 test('translation timeout does not freeze page on slow network', async ({ page }) => {
   await page.route('**/translations/el.json', async (route) => {
     await new Promise((resolve) => setTimeout(resolve, 7000));
