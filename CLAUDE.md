@@ -90,6 +90,15 @@ npx serve -s . -l 4173
 CI: `.github/workflows/e2e-matrix.yml` runs the Playwright matrix (Chromium, Firefox, WebKit +
 iPhone 13 / Pixel 5 profiles) on every push and PR.
 
+**E2E conventions (avoid flakes):**
+- The specs **stub the external Flutter widget** (`bible-quotes-widget.pages.dev`) with an empty
+  document via `page.route`. Keep this — the real widget is a heavy CanvasKit app and letting it
+  load makes `waitUntil: 'networkidle'` tests flaky (it caused a red `28f9faf` run after the
+  demo was moved higher). Any new spec that visits `/` or `/en` should stub it too.
+- `retries: process.env.CI ? 2 : 0` — flakes retry on CI, but locally `0` so you see real failures.
+- **WebKit only runs on CI.** `playwright.config.cjs` drops the webkit project on macOS 12
+  (Darwin 21), where Playwright can't install it — so verify webkit-specific changes via CI.
+
 ## Conventions & gotchas
 
 - **CSS loads minified, JS loads from source.** The pages link `style.min.css` but
