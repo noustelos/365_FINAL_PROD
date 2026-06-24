@@ -32,7 +32,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=GFS+Didot&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.min.css?v=20260422">
+    <link rel="stylesheet" href="style.min.css?v=20260624e">
 
         <script type="application/ld+json">
         {
@@ -59,6 +59,72 @@
             "inLanguage": "en-US"
         }
         </script>
+
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "inLanguage": "en-US",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "What is 365orthodoxy?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "A modern, elegant digital Orthodox calendar (widget) that combines the Saints of the day, movable feasts, and selected spiritual passages from the Holy Bible and Orthodox tradition."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is a widget?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "A small digital tool that performs one specific function and can be embedded on a screen, an app, or a website."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Which devices does it work on?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "It works smoothly on desktop, Android, iOS, tablet, and websites, with a responsive design for every device."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How much does it cost? Is it free?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "There will be a free edition (Freemium) for daily use, as well as a Premium edition with a one-time purchase for the full experience without limits."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Where does the content come from?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "From the Holy Bible (Old & New Testament), Patristic texts and the Philokalia, the Gerontikon, and the teaching of modern Saints such as St. Paisios and St. Porphyrios."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "When will it be available?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "365orthodoxy is in its final stage of completion. Leave your email to be among the first notified when it launches."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Can I add it to my website?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. It is an ideal addition for parish websites, communities, and blogs."
+                    }
+                }
+            ]
+        }
+        </script>
 </head>
 
 <body>
@@ -67,6 +133,10 @@
     <div class="ambient-glow glow-2"></div>
 
     <header class="glass-widget special-panel-dark header-main">
+        <nav class="header-nav" aria-label="Navigation">
+            <a href="#faq" class="nav-link">FAQ</a>
+        </nav>
+
         <div class="header-center-stack">
             <a href="/en" class="nav-logo main-title">365orthodoxy</a>
             <div class="brand-divider"></div>
@@ -87,6 +157,7 @@
 
         <section class="glass-widget special-panel hero-section">
             <h1 class="sr-only">365orthodoxy - Digital Orthodox Calendar and Spiritual Quotes</h1>
+            <p class="kicker">Digital Orthodox Calendar</p>
             <h2 style="text-align: center;">In the beginning was the Word.</h2>
             <p class="large-text" style="text-align: center;">
                 <strong class="burgundy-text">A calm reminder of faith on your screen.</strong><br><br>
@@ -94,8 +165,24 @@
                 It works on mobile, tablet, desktop, or websites.<br><br>
                 <em>Designed for simplicity, serenity, and daily use.</em>
             </p>
-            <div class="audience-cta">
-                <a href="#demo" class="badge-style gold-badge">See Widget Live</a>
+        </section>
+
+        <section class="glass-widget panel-extra-dark demo-section" id="demo">
+            <span class="live-badge" data-i18n="live-badge">Live preview</span>
+            <h2 data-i18n="live-title">The Widget in Action</h2>
+
+            <div class="section-divider">
+                <span class="divider-symbol">✦</span>
+            </div>
+
+            <div class="widget-preview-container">
+                <iframe src="https://bible-quotes-widget.pages.dev" title="365orthodoxy widget live preview" loading="lazy" allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+            </div>
+
+            <div style="text-align: center; margin-top: 24px;">
+                <button id="openLightbox" class="badge-style gold-badge">
+                    <span data-i18n="btn-demo">See App in Action</span>
+                </button>
             </div>
         </section>
 
@@ -112,18 +199,46 @@
             </div>
         </section>
 
-        <section class="glass-widget panel-extra-dark" id="demo">
-            <h2 data-i18n="live-title">The Widget in Action</h2>
+
+        <section class="glass-widget special-panel faq-section" id="faq">
+            <h2>Frequently Asked Questions</h2>
             <div class="section-divider"><span class="divider-symbol">✦</span></div>
 
-            <div class="widget-preview-container">
-                <iframe src="https://bible-quotes-widget.pages.dev" title="365orthodoxy widget live preview" loading="lazy" allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
-                
-                <div style="text-align: center; margin-top: 25px;">
-                    <button id="openLightbox" class="badge-style gold-badge">
-                        <span data-i18n="btn-demo">See App in Action</span>
-                    </button>
-                </div>
+            <div class="faq-list">
+                <details class="faq-item reading-focus-panel">
+                    <summary>What is 365orthodoxy?</summary>
+                    <p>A modern, elegant digital Orthodox calendar (widget) that combines the Saints of the day, movable feasts, and selected spiritual passages from the Holy Bible and Orthodox tradition.</p>
+                </details>
+
+                <details class="faq-item reading-focus-panel">
+                    <summary>What is a widget?</summary>
+                    <p>A small digital tool that performs one specific function and can be embedded on a screen, an app, or a website.</p>
+                </details>
+
+                <details class="faq-item reading-focus-panel">
+                    <summary>Which devices does it work on?</summary>
+                    <p>It works smoothly on desktop, Android, iOS, tablet, and websites, with a responsive design for every device.</p>
+                </details>
+
+                <details class="faq-item reading-focus-panel">
+                    <summary>How much does it cost? Is it free?</summary>
+                    <p>There will be a free edition (Freemium) for daily use, as well as a Premium edition with a one-time purchase for the full experience without limits.</p>
+                </details>
+
+                <details class="faq-item reading-focus-panel">
+                    <summary>Where does the content come from?</summary>
+                    <p>From the Holy Bible (Old & New Testament), Patristic texts and the Philokalia, the Gerontikon, and the teaching of modern Saints such as St. Paisios and St. Porphyrios.</p>
+                </details>
+
+                <details class="faq-item reading-focus-panel">
+                    <summary>When will it be available?</summary>
+                    <p>365orthodoxy is in its final stage of completion. Leave your email below to be among the first notified when it launches.</p>
+                </details>
+
+                <details class="faq-item reading-focus-panel">
+                    <summary>Can I add it to my website?</summary>
+                    <p>Yes. It is an ideal addition for parish websites, communities, and blogs.</p>
+                </details>
             </div>
         </section>
 

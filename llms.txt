@@ -1,0 +1,43 @@
+# 365orthodoxy
+
+> 365orthodoxy is a modern, minimal digital Orthodox calendar (eortologio). It shows the
+> Saint of the day, movable feasts, and curated spiritual quotes from Scripture, the Church
+> Fathers, the Philokalia, and the Gerontikon — delivered as a lightweight widget for mobile,
+> tablet, desktop, and websites. This site is the bilingual (Greek / English) landing page for
+> the product, where visitors preview the widget and sign up to be notified at launch.
+
+Status: pre-launch. A free (freemium) edition and a one-time-purchase Premium edition are
+planned. The interactive widget is hosted separately and embedded on the demo section of the
+homepage.
+
+Primary language: Greek (el). Full English translation available at /en.
+Canonical domain: https://365orthodoxy.com
+
+## Pages
+
+- [Home (Greek)](https://365orthodoxy.com/): Overview of the widget, features, sources, audience, live demo, and email signup.
+- [Home (English)](https://365orthodoxy.com/en): English version of the homepage.
+- [Privacy Policy (Greek)](https://365orthodoxy.com/privacy): Privacy and data handling policy.
+- [Privacy Policy (English)](https://365orthodoxy.com/privacy-en): English privacy policy.
+
+## Key features
+
+- 365-day calendar of Saints and movable feasts.
+- Daily spiritual readings from Scripture, Patristic texts, and the Gerontikon.
+- Original text with Modern Greek translation toggle.
+- Search by date or by Saint's name (name-day lookup).
+- Random "new quote" generator, copy/share, and deeper biographies via Wikipedia.
+- Responsive minimal design for desktop, Android, iOS, and embedding in websites.
+
+## Content sources
+
+- The Holy Bible (Old & New Testament): Psalms, Gospels, Epistles, Proverbs, Prophets.
+- Patristic texts and the Philokalia.
+- The Gerontikon (sayings of the Desert Fathers).
+- Modern Saints (St. Paisios, St. Porphyrios).
+
+## Optional
+
+- [Sitemap](https://365orthodoxy.com/sitemap.xml): All indexable URLs.
+- Studio: Built by NOUSTELOS_STUDIO (https://noustelos.gr).
+- Social: Facebook, Instagram, YouTube, and X (@365orthodoxy).

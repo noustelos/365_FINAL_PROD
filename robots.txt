@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+# Thank-you page is post-signup only (also noindex via _headers)
+Disallow: /success.html
+Disallow: /success
+
 Sitemap: https://365orthodoxy.com/sitemap.xml
+
+# LLM-friendly site summary: https://365orthodoxy.com/llms.txt

@@ -217,6 +217,23 @@ function initSubscribeFormGuard() {
     });
 }
 
+function initWidgetPreview() {
+    document.querySelectorAll('.widget-preview-container').forEach((container) => {
+        const iframe = container.querySelector('iframe');
+        if (!iframe) return;
+
+        const reveal = () => container.classList.add('is-loaded');
+
+        iframe.addEventListener('load', reveal, { once: true });
+
+        // Fallbacks: never leave the skeleton up if 'load' already fired or stalls.
+        if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
+            reveal();
+        }
+        window.setTimeout(reveal, 5000);
+    });
+}
+
 function initLightbox() {
     const openBtn = document.getElementById('openLightbox');
     const lightbox = document.getElementById('lightbox');
@@ -321,6 +338,7 @@ function initGlowParallax() {
 document.addEventListener('DOMContentLoaded', () => {
     initLanguageAndDate();
     initSubscribeFormGuard();
+    initWidgetPreview();
     initLightbox();
     initObfuscatedEmails();
     initDynamicCopyrightYear();
