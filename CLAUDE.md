@@ -19,7 +19,10 @@ collects email signups for the upcoming launch.
 - Hand-written HTML, CSS, and vanilla JavaScript (no framework, no bundler).
 - Minification only: Babel (transpile) + Terser (JS) + clean-css (CSS).
 - Playwright for cross-browser E2E tests.
-- Self-hosted fonts in `fonts/` plus Google Fonts (Montserrat, GFS Didot, Space Grotesk).
+- Google Fonts: Montserrat (400/600/700/800) + GFS Didot, loaded in each page `<head>`
+  (preload + stylesheet must point to the same URL). The `.footer-credit-link` uses a system
+  monospace stack — no extra font download. (`fonts/` holds self-hosted files, not currently
+  wired via `@font-face`.)
 
 ## Layout
 
